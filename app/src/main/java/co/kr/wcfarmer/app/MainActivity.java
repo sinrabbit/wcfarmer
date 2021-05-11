@@ -41,12 +41,7 @@ public class MainActivity extends AppCompatActivity {
         mWebSettings.setCacheMode(WebSettings.LOAD_NO_CACHE); // 브라우저 캐시 허용 여부
         mWebSettings.setDomStorageEnabled(true); // 로컬저장소 허용 여부
 
-        if(timeChck())
-            mWebView.loadUrl("http://wcfarmer.co.kr/"); // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
-        else {
-            Toast.makeText(this, "앱 사용기간 만료.", Toast.LENGTH_SHORT).show();
-            finish();
-        }
+        mWebView.loadUrl("http://wcfarmer.co.kr/"); // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
 
 
     }
@@ -65,34 +60,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private boolean timeChck(){
-
-        boolean result = false;
-        long now = System.currentTimeMillis();
-        long limitTime = DateToMill("2021-05-13 00:00:00");
-
-        Log.d("test", "now : " + now);
-        Log.d("test", "limitTime : " + limitTime);
-
-        if(now < limitTime)
-            result = true;
-
-        return result;
-
-    }
-
-    public long DateToMill(String date) {
-        String pattern = "yyyy-MM-dd HH:mm:ss";
-        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-        Date trans_date = null;
-        try {
-            trans_date = formatter.parse(date);
-        }
-        catch (ParseException e)
-        { // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-            return trans_date.getTime();
-    }
 
 }
